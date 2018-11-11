@@ -1,3 +1,4 @@
 *.sw[op]
 build/
 .DS_Store
+components/ugfx-glue/**/*.dat
