@@ -1,0 +1,150 @@
+menu "uGFX"
+
+    config UGFX_GUI_ENABLE
+        bool
+        default y
+
+    choice UGFX_DRIVER_MODE
+        prompt "Display Driver Mode"
+        default UGFX_LCD_DRIVER_API_MODE
+
+        config UGFX_LCD_DRIVER_FRAMEBUFFER_MODE
+            bool "Select uGFX Driver Framebuffer Mode"
+
+        config UGFX_LCD_DRIVER_API_MODE
+            bool "Select uGFX Driver API Mode" 
+
+    endchoice
+
+    config UGFX_USE_CONFIGURED_OPTIONS
+        bool
+        #default y if !UGFX_USE_CUSTOM_DRIVER
+        #default y if UGFX_CUSTOM_DRIVER_KEEP_OPTIONS
+        default y
+
+    choice UGFX_DISP_ROTATE
+        prompt "Choose Screen Rotate"
+        default UGFX_DISP_ROTATE_90
+
+        config UGFX_DISP_ROTATE_0
+            bool "GDISP_ROTATE_0"
+
+        config UGFX_DISP_ROTATE_90
+            bool "GDISP_ROTATE_90"
+
+        config UGFX_DISP_ROTATE_180
+            bool "GDISP_ROTATE_180"
+
+        config UGFX_DISP_ROTATE_270
+            bool "GDISP_ROTATE_270"
+
+    endchoice
+
+    menu "Config Driver"
+        depends on UGFX_USE_CONFIGURED_OPTIONS
+
+        choice UGFX_DRIVER_SCREEN
+            depends on UGFX_USE_CONFIGURED_OPTIONS
+            prompt "Choose Screen Driver"
+            default UGFX_DRIVER_ILI9341
+            help
+                CHOOSE SCREEN DRIVER.
+
+            config UGFX_DRIVER_ILI9341
+                bool "ILI9341"
+            #config UGFX_DRIVER_SSD1306
+            #    bool "SSD1306"
+            #config UGFX_DRIVER_ST7789
+            #    bool "ST7789"
+            #config UGFX_DRIVER_NT35510
+            #    bool "NT35510"
+            #config UGFX_DRIVER_EPAPER
+            #    bool "EPAPER"
+
+        endchoice
+
+        menu "ILI9341 Screen Pin Configuration"
+            depends on UGFX_DRIVER_ILI9341
+
+            choice UGFX_LCD_SPI_SELECT
+                prompt "Select SPI Port"
+                default UGFX_LCD_VSPI
+
+                config UGFX_LCD_HSPI
+                    bool "Select HSPI"
+
+                config UGFX_LCD_VSPI
+                    bool "Select VSPI"
+
+            endchoice
+            config UGFX_LCD_SPI_NUM
+                int
+                default 1 if  UGFX_LCD_HSPI
+                default 2 if  UGFX_LCD_VSPI
+            config UGFX_LCD_SPI_CLOCK
+                int "uGFX LCD SPI Clock"
+                range 0 80000000
+                default 40000000
+
+            config UGFX_LCD_MISO_GPIO
+                int "uGFX LCD MISO GPIO"
+                range 0 39
+                default 19
+            config UGFX_LCD_MOSI_GPIO
+                int "uGFX LCD MOSI GPIO"
+                range 0 39
+                default 23
+            config UGFX_LCD_CLK_GPIO
+                int "uGFX LCD CLK GPIO"
+                range 0 39
+                default 18
+            config UGFX_LCD_CS_GPIO
+                int "uGFX LCD CS GPIO"
+                range 0 39
+                default 5
+            config UGFX_LCD_DC_GPIO
+                int "uGFX LCD DC GPIO"
+                range 0 39
+                default 22
+            config UGFX_LCD_RESET_GPIO
+                int "uGFX LCD RESET GPIO"
+                range 0 39
+                default 21
+            config UGFX_LCD_BL_GPIO
+                int "uGFX LCD BL GPIO"
+                range 0 39
+                default 0
+
+        endmenu
+
+        config ILI9341_UGFX_DRIVER_SCREEN_WIDTH
+            depends on UGFX_DRIVER_ILI9341
+            int "uGFX Screen Width (pixels)"
+            range 0 5000
+            default 240
+            help
+                "uGFX Screen Width (pixels)"
+
+        config ILI9341_UGFX_DRIVER_SCREEN_HEIGHT
+            depends on UGFX_DRIVER_ILI9341
+            int "uGFX Screen Height (pixels)"
+            range 0 5000
+            default 320
+            help
+                "uGFX Screen Height (pixels)"
+
+        config UGFX_DRIVER_SCREEN_WIDTH
+            int
+            default ILI9341_UGFX_DRIVER_SCREEN_WIDTH if  UGFX_DRIVER_ILI9341
+            #default SSD1306_UGFX_DRIVER_SCREEN_WIDTH if  UGFX_DRIVER_SSD1306
+            #default ST7789_UGFX_DRIVER_SCREEN_WIDTH  if  UGFX_DRIVER_ST7789
+            #default NT35510_UGFX_DRIVER_SCREEN_WIDTH if  UGFX_DRIVER_NT35510
+
+        config UGFX_DRIVER_SCREEN_HEIGHT
+            int
+            default ILI9341_UGFX_DRIVER_SCREEN_HEIGHT if  UGFX_DRIVER_ILI9341
+            #default SSD1306_UGFX_DRIVER_SCREEN_HEIGHT if  UGFX_DRIVER_SSD1306
+            #default ST7789_UGFX_DRIVER_SCREEN_HEIGHT  if  UGFX_DRIVER_ST7789
+            #default NT35510_UGFX_DRIVER_SCREEN_HEIGHT if  UGFX_DRIVER_NT35510
+    endmenu
+endmenu

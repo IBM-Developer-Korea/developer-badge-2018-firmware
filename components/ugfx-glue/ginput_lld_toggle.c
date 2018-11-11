@@ -10,7 +10,7 @@
 #include "gfx.h"
 
 #if (GFX_USE_GINPUT && GINPUT_NEED_TOGGLE)
-#include "../../../src/ginput/ginput_driver_toggle.h"
+#include "src/ginput/ginput_driver_toggle.h"
 
 #include <badge_input.h>
 

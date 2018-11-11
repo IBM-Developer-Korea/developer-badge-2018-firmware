@@ -18,4 +18,7 @@ endif
 UGFX_PATH := $(PROJECT_PATH)/ugfx
 export UGFX_PATH
 
+ESP_IOT_PATH := $(PROJECT_PATH)/esp-iot-solution
+export ESP_IOT_PATH
+
 include $(IDF_PATH)/make/project.mk

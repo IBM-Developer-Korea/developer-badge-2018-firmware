@@ -1,0 +1,16 @@
+[submodule "esp-idf"]
+	path = esp-idf
+	url = https://github.com/espressif/esp-idf.git
+	branch = 30545f4cc
+[submodule "micropython"]
+	path = micropython
+	url = https://github.com/jgkong/micropython.git
+	branch = badge2018
+[submodule "ugfx"]
+	path = ugfx
+	url = https://github.com/jgkong/ugfx.git
+	branch = badge2018
+[submodule "esp-iot-solution"]
+	path = esp-iot-solution
+	url = https://github.com/jgkong/esp-iot-solution.git
+	branch = badge2018

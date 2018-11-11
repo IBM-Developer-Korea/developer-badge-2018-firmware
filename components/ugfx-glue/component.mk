@@ -12,7 +12,10 @@ COMPONENT_ADD_INCLUDEDIRS := .
 COMPONENT_EXTRA_INCLUDES := \
 	$(UGFX_PATH) \
 	$(UGFX_PATH)/src \
-	$(UGFX_PATH)/src/gdisp/mcufont \
-	$(UGFX_PATH)/drivers/gdisp/framebuffer \
+	$(UGFX_PATH)/src/gdisp \
+	$(ESP_IOT_PATH)/components/hmi/gdrivers/gdisp/ILI9341 \
+	$(ESP_IOT_PATH)/components/hmi/ugfx_gui \
+	$(ESP_IOT_PATH)/components/spi_devices/lcd \
+	$(ESP_IOT_PATH)/components/spi_devices/lcd/include \
 	$(IDF_PATH)/components/freertos/include/freertos \
 
