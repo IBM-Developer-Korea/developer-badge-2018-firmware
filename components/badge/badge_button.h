@@ -8,15 +8,13 @@ enum badge_button_t {
 	BADGE_BUTTON_DOWN   =  2,
 	BADGE_BUTTON_LEFT   =  3,
 	BADGE_BUTTON_RIGHT  =  4,
+	BADGE_BUTTON_MID    =  5,
 
 	BADGE_BUTTON_A      =  6,
 	BADGE_BUTTON_B      =  7,
-	BADGE_BUTTON_SELECT =  8,
-	BADGE_BUTTON_START  =  9,
-	BADGE_BUTTON_FLASH  = 10,
 
 	// Number of buttons on the badge
-	BADGE_BUTTONS       = 10,
+	BADGE_BUTTONS       = 7,
 };
 
 #endif // BADGE_BUTTON_H

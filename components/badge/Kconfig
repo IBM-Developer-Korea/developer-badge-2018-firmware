@@ -1,0 +1,21 @@
+menu "IBM Developer Day 2018 Badge"
+
+choice DEV_BADGE_REV
+    prompt "DEV Badge revision"
+    default DEV_BADGE_V3
+    help
+        This option sets the DEV badge revision.
+
+config DEV_BADGE_V1
+    bool "Rev 1.0: Production"
+config DEV_BADGE_PROTOTYPE
+    bool "Rev 0.3: Prototype (Green square board)"
+endchoice
+
+config DEV_BADGE_INPUT_DEBUG
+    bool "Enable input debug messages"
+    default n
+    help
+        Debugging
+
+endmenu

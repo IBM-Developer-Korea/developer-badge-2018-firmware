@@ -6,12 +6,16 @@
 #include <stdint.h>
 #include <esp_err.h>
 
+#include <badge_gpiobutton.h>
+
 __BEGIN_DECLS
 
 /** initialize badge input
  * @return ESP_OK on success; any other value indicates an error
  */
 extern esp_err_t badge_input_init(void);
+
+extern esp_err_t badge_button_init(void);
 
 /** button is released */
 #define EVENT_BUTTON_RELEASED false

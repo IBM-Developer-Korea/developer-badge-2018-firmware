@@ -1,13 +1,15 @@
 #include <sdkconfig.h>
 
-#ifdef CONFIG_SHA_BADGE_INPUT_DEBUG
+#ifdef CONFIG_DEV_BADGE_INPUT_DEBUG
 #define LOG_LOCAL_LEVEL ESP_LOG_DEBUG
-#endif // CONFIG_SHA_BADGE_INPUT_DEBUG
+#endif // CONFIG_DEV_BADGE_INPUT_DEBUG
 
 #include <esp_event.h>
 #include <esp_log.h>
 
 #include "badge_input.h"
+#include "badge_button.h"
+#include "badge_pins.h"
 
 static const char *TAG = "badge_input";
 
@@ -36,30 +38,78 @@ badge_input_init(void)
 	return ESP_OK;
 }
 
-#ifdef CONFIG_SHA_BADGE_INPUT_DEBUG
-static const char *badge_input_button_name[11] = {
+#ifdef CONFIG_DEV_BADGE_INPUT_DEBUG
+static const char *badge_input_button_name[8] = {
 	"(null)",
 	"UP",
 	"DOWN",
 	"LEFT",
 	"RIGHT",
-	"(null)",
+	"MIDDLE",
 	"A",
 	"B",
-	"SELECT",
-	"START",
-	"FLASH",
 };
-#endif // CONFIG_SHA_BADGE_INPUT_DEBUG
+#endif // CONFIG_DEV_BADGE_INPUT_DEBUG
+
+esp_err_t
+badge_button_init(void)
+{
+	esp_err_t err;
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_UP   , BADGE_BUTTON_UP);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_DOWN , BADGE_BUTTON_DOWN);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_LEFT , BADGE_BUTTON_LEFT);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_RIGHT, BADGE_BUTTON_RIGHT);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+#ifdef PIN_NUM_BUTTON_MID
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_MID, BADGE_BUTTON_MID);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+#endif
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_A    , BADGE_BUTTON_A);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+	err = badge_gpiobutton_add(PIN_NUM_BUTTON_B    , BADGE_BUTTON_B);
+	if (err != ESP_OK)
+	{
+		ESP_LOGE(TAG, "badge_gpiobutton_add failed: %d", err);
+		return err;
+	}
+	return ESP_OK;
+}
 
 void
 badge_input_add_event(uint32_t button_id, bool pressed, bool in_isr)
 { /* maybe in interrupt handler */
-#ifdef CONFIG_SHA_BADGE_INPUT_DEBUG
+#ifdef CONFIG_DEV_BADGE_INPUT_DEBUG
 	ets_printf("badge_input: Button %s %s.\n",
 			badge_input_button_name[button_id < 11 ? button_id : 0],
 			pressed ? "pressed" : "released");
-#endif // CONFIG_SHA_BADGE_INPUT_DEBUG
+#endif // CONFIG_DEV_BADGE_INPUT_DEBUG
 
 	if (pressed)
 	{
