@@ -4,7 +4,7 @@
 
 #include "sdkconfig.h"
 
-#ifdef CONFIG_DEV_BADGE_PROTOTYPE
+#ifdef CONFIG_DEV_BADGE_V1
 
 // Badge revision 1.0
 #define PIN_NUM_LED1         16
