@@ -114,8 +114,8 @@
 
 #define GDISP_NEED_IMAGE                         TRUE
 #define GDISP_NEED_IMAGE_NATIVE                  TRUE
-//    #define GDISP_NEED_IMAGE_GIF                     FALSE
-//        #define GDISP_IMAGE_GIF_BLIT_BUFFER_SIZE     32
+    #define GDISP_NEED_IMAGE_GIF                     TRUE
+        #define GDISP_IMAGE_GIF_BLIT_BUFFER_SIZE     32
 #define GDISP_NEED_IMAGE_BMP                     TRUE
         #define GDISP_NEED_IMAGE_BMP_1               TRUE
         #define GDISP_NEED_IMAGE_BMP_4               TRUE
@@ -126,8 +126,8 @@
         #define GDISP_NEED_IMAGE_BMP_24              TRUE
         #define GDISP_NEED_IMAGE_BMP_32              TRUE
         #define GDISP_IMAGE_BMP_BLIT_BUFFER_SIZE     36
-#define GDISP_NEED_IMAGE_JPG                     TRUE
-#define GDISP_NEED_IMAGE_PNG                     TRUE
+#define GDISP_NEED_IMAGE_JPG                     FALSE
+#define GDISP_NEED_IMAGE_PNG                     FALSE
         #define GDISP_NEED_IMAGE_PNG_INTERLACED      FALSE
         #define GDISP_NEED_IMAGE_PNG_TRANSPARENCY    TRUE
         #define GDISP_NEED_IMAGE_PNG_BACKGROUND      TRUE
@@ -155,8 +155,9 @@
 
 #define GDISP_DEFAULT_ORIENTATION                    GDISP_ROTATE_LANDSCAPE    // If not defined the native hardware orientation is used.
 //#define GDISP_LINEBUF_SIZE                           128
-#define GDISP_STARTUP_COLOR                          White
+#define GDISP_STARTUP_COLOR                          Black
 #define GDISP_NEED_STARTUP_LOGO                      FALSE
+#define GDISP_PIXELFORMAT                    GDISP_PIXELFORMAT_RGB565
 
 //#define GDISP_TOTAL_DISPLAYS                         1
 
@@ -221,7 +222,7 @@
 //        #define GWIN_SLIDER_TOGGLE_INC               20
 #define GWIN_NEED_CHECKBOX                       TRUE
 #define GWIN_NEED_IMAGE                          TRUE
-//        #define GWIN_NEED_IMAGE_ANIMATION            FALSE
+#define GWIN_NEED_IMAGE_ANIMATION                TRUE
 #define GWIN_NEED_RADIO                          TRUE
 #define GWIN_NEED_LIST                           TRUE
 #define GWIN_NEED_LIST_IMAGES                TRUE
@@ -315,14 +316,14 @@
 //#define GFILE_NEED_NOAUTOMOUNT                       TRUE
 //#define GFILE_NEED_NOAUTOSYNC                        FALSE
 
-//#define GFILE_NEED_MEMFS                             FALSE
+#define GFILE_NEED_MEMFS                             TRUE
 // #define GFILE_NEED_ROMFS                             TRUE
 //#define GFILE_NEED_RAMFS                             FALSE
 //#define GFILE_NEED_FATFS                             TRUE
 //#define GFILE_FATFS_EXTERNAL_LIB                     TRUE
 //#define GFILE_NEED_NATIVEFS                          FALSE
 //#define GFILE_NEED_CHBIOSFS                          FALSE
-#define GFILE_NEED_USERFS                            TRUE
+//#define GFILE_NEED_USERFS                            FALSE
 
 //#define GFILE_ALLOW_FLOATS                           FALSE
 //#define GFILE_ALLOW_DEVICESPECIFIC                   FALSE
