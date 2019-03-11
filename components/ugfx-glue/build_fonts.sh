@@ -14,6 +14,7 @@ MCUFONT=mcufont
 # Character ranges to include in the fonts.
 # Default: ASCII only
 ASCIICHARS=32-127
+HANGULCHARS=ALL
 
 # Number of iterations in optimization
 # Higher numbers compress better
@@ -41,7 +42,9 @@ function build {
     dat=$indir/$dat
     if [ ! -f $dat ]; then
         $MCUFONT $cmd $1 $size $bw
-        $MCUFONT filter $dat $chars
+        if [ ! $chars = 'ALL' ]; then
+                $MCUFONT filter $dat $chars
+        fi
         if [ $outfile = 'LargeNumbers' ]; then
             $MCUFONT filter $dat 0x20-0x39
         fi
@@ -61,9 +64,22 @@ function build {
 # Commands are of form: build <input_file> <output_file> <output_format> [size] [bw]
 # If bw is not given, builds an antialiased font.
 
+build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Light.ttf   fonts/IBMPlexMono-Light12   rlefont 12 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Light.ttf   fonts/IBMPlexMono-Light18   rlefont 18 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Light.ttf   fonts/IBMPlexMono-Light24   rlefont 24 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Light.ttf   fonts/IBMPlexMono-Light32   rlefont 32 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Light.ttf   fonts/IBMPlexMono-Light48   rlefont 48 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Bold.ttf    fonts/IBMPlexMono-Bold18    rlefont 18 '' ${ASCIICHARS}
 build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Bold.ttf    fonts/IBMPlexMono-Bold24    rlefont 24 '' ${ASCIICHARS}
 build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Bold.ttf    fonts/IBMPlexMono-Bold36    rlefont 36 '' ${ASCIICHARS}
 build fonts/ttf/IBM-Plex/IBM-Plex-Mono/IBMPlexMono-Bold.ttf    fonts/IBMPlexMono-Bold48    rlefont 48 '' ${ASCIICHARS}
 build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Regular.ttf fonts/IBMPlexSans-Regular12 rlefont 12 '' ${ASCIICHARS}
 build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Regular.ttf fonts/IBMPlexSans-Regular18 rlefont 18 '' ${ASCIICHARS}
-build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Regular.ttf fonts/IBMPlexSans-Regular22 rlefont 22 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Regular.ttf fonts/IBMPlexSans-Regular24 rlefont 24 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Regular.ttf fonts/IBMPlexSans-Regular32 rlefont 32 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Bold.ttf    fonts/IBMPlexSans-Bold12    rlefont 12 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Bold.ttf    fonts/IBMPlexSans-Bold18    rlefont 18 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Bold.ttf    fonts/IBMPlexSans-Bold24    rlefont 24 '' ${ASCIICHARS}
+build fonts/ttf/IBM-Plex/IBM-Plex-Sans/IBMPlexSans-Bold.ttf    fonts/IBMPlexSans-Bold32    rlefont 32 '' ${ASCIICHARS}
+build fonts/ttf/Naver-Nanum/NanumSquareRoundR.ttf              fonts/NanumSquareRound-Regular16 rlefont 16 '' ${HANGULCHARS}
+build fonts/ttf/Naver-Nanum/NanumSquareB.ttf                   fonts/NanumSquare-Bold22 rlefont 22 '' ${HANGULCHARS}
