@@ -6,3 +6,8 @@
  */
 
 #include "gdisp_lld_ILI9341.c"
+
+#include "lcd_adapter_mk.h"
+LLDSPEC	void gdisp_lld_deinit(GDisplay *g) {
+    board_lcd_deinit();
+}

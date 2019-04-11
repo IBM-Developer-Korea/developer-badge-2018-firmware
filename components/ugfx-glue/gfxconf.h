@@ -68,6 +68,8 @@
 ///////////////////////////////////////////////////////////////////////////
 #define GFX_USE_GDISP                                TRUE
 
+#define GDISP_HARDWARE_DEINIT           TRUE
+
 //#define GDISP_NEED_AUTOFLUSH                         FALSE
 //#define GDISP_NEED_TIMERFLUSH                        FALSE
 //#define GDISP_NEED_VALIDATION                        TRUE
